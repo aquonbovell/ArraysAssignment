@@ -29,7 +29,7 @@ public class ArrayData {
     initalizeArray(rowData);
     initalizeArray(colData);
   }
-  
+
   /*
    * Augmented Constructor
    */
@@ -74,7 +74,7 @@ public class ArrayData {
 
   private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
-    return (rand.nextInt((max - min) +1) + min -1);
+    return (rand.nextInt((max - min) + 1) + min - 1);
   }
 
   public void print() {
@@ -82,9 +82,28 @@ public class ArrayData {
     for (int i = 0; i < values.length; ++i) {
       System.out.print("| ");
       for (int j = 0; j < columns; j++) {
-        System.out.print(values[i][j]+ " | ");
+        System.out.print(values[i][j] + " | ");
       }
       System.out.println("\n-----------------------------------------");
-    }    
+    }
+  }
+
+  public void sum() {
+
+    for (int i = 0; i < rowData.length; ++i) {
+      int sum = 0;
+      for (int index = 0; index < columns; ++index) {
+        sum += values[i][index];
+      }
+      rowData[i] = sum;
+    }
+    
+    for (int i = 0; i < colData.length; ++i) {
+      int sum = 0;
+      for (int index = 0; index < columns; ++index) {
+        sum += values[index][i];
+      }
+      colData[i] = sum;
+    }
   }
 }

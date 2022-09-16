@@ -1,8 +1,14 @@
+import java.util.Arrays;
+
 public class TestArrayData {
 
   public static void main(String[] args) {
     ArrayData s = new ArrayData();
-    s.generate(6, 10, 2, 4, 2, 5);
+    s.generate(6, 99, 1, 9, 1, 8);
     s.print();
+
+    s.sum();
+    System.out.println(Arrays.toString(s.rowData));
+    System.out.println(Arrays.toString(s.colData));
   }
 }
