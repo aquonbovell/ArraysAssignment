@@ -8,7 +8,9 @@ public class TestArrayData {
     s.print();
 
     s.sum();
-    System.out.println(Arrays.toString(s.rowData));
-    System.out.println(Arrays.toString(s.colData));
+    // System.out.println(Arrays.toString(s.rowData));
+    // System.out.println(Arrays.toString(s.colData));
+
+    s.occurrence(4);
   }
 }
