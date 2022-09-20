@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TestArrayData {
 
   public static void main(String[] args) {
@@ -10,7 +8,7 @@ public class TestArrayData {
     s.sum();
     // System.out.println(Arrays.toString(s.rowData));
     // System.out.println(Arrays.toString(s.colData));
-
+    
     s.occurrence(4);
   }
 }

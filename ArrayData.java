@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class ArrayData {
-  int rows, columns, values[][], rowData[], colData[];
+  private int rows, columns, values[][], rowData[], colData[];
 
   /*
    * Constructor
