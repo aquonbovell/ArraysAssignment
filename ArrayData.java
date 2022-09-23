@@ -40,23 +40,15 @@ public class ArrayData {
     values = new int[rows][columns];
     rowData = new int[rows];
     colData = new int[columns];
-    initalizeArray(values, startingValue);
+    initalizeArrayWithStartingValue(values, startingValue);
     initalizeArray(rowData);
     initalizeArray(colData);
   }
 
   private void initalizeArray(int array[][]) {
-    for (int i = 0; i < array.length; ++i) {
-      for (int j = 0; j < array.length; ++j) {
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < columns; ++j) {
         array[i][j] = 0;
-      }
-    }
-  }
-
-  private void initalizeArray(int array[][], int startingValue) {
-    for (int i = 0; i < array.length; ++i) {
-      for (int j = 0; j < array.length; ++j) {
-        array[i][j] = startingValue;
       }
     }
   }
@@ -64,6 +56,14 @@ public class ArrayData {
   private void initalizeArray(int array[]) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = 0;
+    }
+  }
+
+  private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
+    for (int i = 0; i < array.length; ++i) {
+      for (int j = 0; j < array.length; ++j) {
+        array[i][j] = startingValue;
+      }
     }
   }
 
@@ -126,6 +126,41 @@ public class ArrayData {
           ++colOccurrences;
       }
       System.out.println(colOccurrences);
+    }
+  }
+
+  public void product(int min, int max) {
+    /*Kenez*/
+    int prodCol[], prodRow[];
+    prodCol = new int[columns];
+    prodRow = new int[rows];
+    Random rand = new Random();
+    int i = 0, j = 0;
+    while (i <= rows) {
+      while (j <= columns) {
+        prodRow[i] *= values[i][j];
+      }
+      if ((prodRow[i] >= min) && (prodRow[i] <= max)) {
+        int rando = rand.nextInt(columns);
+        values[i][rando] -= 1;
+      } else {
+        rowData[i] = prodRow[i];
+        i++;
+      }
+    }
+    j = 0;
+    i = 0;
+    while (j <= columns) {
+      while (i <= rows) {
+        prodCol[j] *= values[i][j];
+      }
+      if ((prodCol[j] >= min) && (prodCol[j] <= max)) {
+        int rando = rand.nextInt(rows);
+        values[rando][j] -= 1;
+      } else {
+        colData[j] = prodCol[j];
+        j++;
+      }
     }
   }
 }

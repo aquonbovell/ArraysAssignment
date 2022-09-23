@@ -6,6 +6,7 @@ public class TestArrayData {
     s.print();
 
     s.sum();
+    s.product(5, 9);
     // System.out.println(Arrays.toString(s.rowData));
     // System.out.println(Arrays.toString(s.colData));
     
