@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.lang.Math;
 
 public class ArrayData {
   private int rows, columns, values[][], rowData[], colData[];
@@ -87,6 +88,36 @@ public class ArrayData {
       }
       System.out.println("\n-----------------------------------------");
     }
+  }
+
+  public void print(int rows, int columns) {
+    /* Dwanye */
+    int i = 0;
+    while (i < rows) {
+      int j = 0;
+      System.out.print("| ");
+      while (j < columns) {
+        System.out.print(values[i][j]);
+        if (j < columns - 1) {
+          System.out.print(" | ");
+        }
+        if (j == columns - 1) {
+          System.out.print(" || " + rowData[i]);
+        }
+        j++;
+      }
+      System.out.println();
+      i++;
+    }
+    System.out.println();
+    int j = 0;
+    System.out.print("| ");
+    while (j < columns) {
+
+      System.out.print(colData[j] + " | ");
+      j++;
+    }
+    System.out.println();
   }
 
   public void sum() {
@@ -318,5 +349,28 @@ public class ArrayData {
       System.out.println(colData[row]);
 
     }
+  }
+
+  public double checkeredOdd() {
+    int odd = 0, even = 0, oddT = 0, evenT = 0;
+    double quotient = 0.0;
+    for (int i = 0; i <= rows; i++) {
+      for (int j = 1; j <= columns; j++) {
+        if (i % 2 == 0) {
+          odd = (2 * j) - 1;
+          even = 2 * j;
+          oddT += values[i][odd];
+          evenT += values[i][even];
+        } else {
+          odd = 2 * j;
+          even = (2 * j) - 1;
+          oddT += values[i][odd];
+          evenT += values[i][even];
+        }
+      }
+    }
+    quotient = oddT / evenT;
+
+    return quotient;
   }
 }
