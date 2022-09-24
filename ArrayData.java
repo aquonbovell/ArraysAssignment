@@ -130,7 +130,7 @@ public class ArrayData {
   }
 
   public void product(int min, int max) {
-    /*Kenez*/
+    /* Kenez */
     int prodCol[], prodRow[];
     prodCol = new int[columns];
     prodRow = new int[rows];
@@ -161,6 +161,19 @@ public class ArrayData {
         colData[j] = prodCol[j];
         j++;
       }
+    }
+  }
+
+  public void flip(int num, int val) {
+    /* Kenez */
+    Random rand = new Random();
+    int i = 0;
+
+    while (i <= num) {
+      int nom = rand.nextInt(rows);
+      int numb = rand.nextInt(columns);
+      values[nom][numb] = val;
+      i++;
     }
   }
 }
