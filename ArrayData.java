@@ -174,6 +174,7 @@ public class ArrayData {
     while (i <= rows) {
       while (j <= columns) {
         prodRow[i] *= values[i][j];
+        j++;
       }
       if ((prodRow[i] >= min) && (prodRow[i] <= max)) {
         int rando = rand.nextInt(columns);
@@ -188,6 +189,7 @@ public class ArrayData {
     while (j <= columns) {
       while (i <= rows) {
         prodCol[j] *= values[i][j];
+        i++;
       }
       if ((prodCol[j] >= min) && (prodCol[j] <= max)) {
         int rando = rand.nextInt(rows);
