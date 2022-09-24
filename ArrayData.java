@@ -176,4 +176,147 @@ public class ArrayData {
       i++;
     }
   }
+
+  private double averageRow(int r) {
+    /* Dwanye */
+    double sumRow = 0;
+    double avgRow = 0;
+    double sample = 0;
+
+    int row = 0;
+    while (row < rowData.length) {
+      if (row == r) {
+        for (int col = 0; col < colData.length; col++) {
+          sumRow += values[row][col];
+        }
+        break;
+      }
+      row++;
+    }
+    sample = 10;
+    avgRow = sumRow / sample;
+    return avgRow;
+  }
+
+  private double averageCol(int c) {
+    /* Dwanye */
+    double sumCol = 0;
+    double avgCol = 0;
+    double sample = 0;
+
+    int row = 0;
+    while (row < rowData.length) {
+      if (row == c) {
+        for (int col = 0; col < colData.length; col++) {
+          sumCol += values[col][row];
+        }
+        break;
+      }
+      row++;
+    }
+    sample = 10;
+    avgCol = sumCol / sample;
+    return avgCol;
+  }
+
+  public void standardDeviation() {
+    /* Dwanye */
+    int sampleSize = 10;
+    double[] y = new double[10];
+    int[] standardDeviaRow = new int[10];
+    double[][] deviationsRow = new double[10][10];
+    double[][] sqDeviationsRow = new double[10][10];
+    double[] sumSqDeviationsRow = new double[10];
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviationsRow[row][col] = 0;
+        sqDeviationsRow[row][col] = 0;
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviationsRow[row][col] = values[row][col] - averageRow(col);
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sqDeviationsRow[row][col] = deviationsRow[row][col] * deviationsRow[row][col];
+      }
+    }
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sumSqDeviationsRow[row] += sqDeviationsRow[row][col];
+      }
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      y[i] = sumSqDeviationsRow[i] / sampleSize;
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      y[i] = Math.sqrt(y[i]);
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      standardDeviaRow[i] = (int) y[i];
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      rowData[i] = standardDeviaRow[i];
+    }
+
+    // Doing the same method for columns
+    double[] z = new double[10];
+    int[] standardDeviaCol = new int[10];
+
+    double[][] deviationsCol = new double[10][10];
+    double[][] sqDeviationsCol = new double[10][10];
+    double[] sumSqDeviationsCol = new double[10];
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviationsCol[row][col] = 0;
+        sqDeviationsCol[row][col] = 0;
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviationsCol[col][row] = values[col][row] - averageCol(col);
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sqDeviationsCol[col][row] = deviationsCol[col][row] * deviationsCol[col][row];
+      }
+    }
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sumSqDeviationsCol[row] += sqDeviationsCol[col][row];
+      }
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      z[i] = sumSqDeviationsCol[i] / sampleSize;
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      z[i] = Math.sqrt(z[i]);
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      standardDeviaCol[i] = (int) z[i];
+    }
+    for (int i = 0; i < rowData.length; i++) {
+      colData[i] = standardDeviaCol[i];
+    }
+
+    // temp for outputing data to the screen.
+    for (int row = 0; row < rowData.length; row++) {
+      System.out.println(rowData[row]);
+
+    }
+    System.out.println();
+    for (int row = 0; row < rowData.length; row++) {
+      System.out.println(colData[row]);
+
+    }
+  }
 }
