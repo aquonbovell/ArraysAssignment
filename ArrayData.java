@@ -4,8 +4,13 @@ import java.lang.Math;
 public class ArrayData {
   private int rows, columns, values[][], rowData[], colData[];
 
-  /*
-   * Constructor
+  /**
+   * Default Constructor -
+   * Initalizes rows and columns to 10
+   * Create rowData array to have lenght of rows and colData array to have lenght
+   * of columns
+   * Create values array to have height of rows and lenght of columns
+   * Initalizes all elements in rowData, colData, values to 0
    */
   ArrayData() {
     rows = columns = 10;
@@ -17,8 +22,13 @@ public class ArrayData {
     initalizeArray(colData);
   }
 
-  /*
-   * Augmented Constructor
+  /**
+   * Parameterized Constructor -
+   * Initalizes rows to nRows and columns to nColumns
+   * Create rowData array to have lenght of rows and colData array to have lenght
+   * of columns
+   * Create values array to have height of rows and lenght of columns
+   * Initalizes all elements in rowData, colData, values to 0
    */
   ArrayData(int nRows, int nColumns) {
     rows = nRows;
@@ -31,10 +41,15 @@ public class ArrayData {
     initalizeArray(colData);
   }
 
-  /*
-   * Augmented Constructor
+  /**
+   * Parameterized Constructor -
+   * Initalizes rows to nRows and columns to nColumns
+   * Create rowData array to have lenght of rows and colData array to have lenght
+   * of columns
+   * Create values array to have height of rows and lenght of columns
+   * Initalizes all elements in rowData, colData to 0
+   * Initalizes all values to startingValues
    */
-
   ArrayData(int nRows, int nColumns, int startingValue) {
     rows = nRows;
     columns = nColumns;
@@ -46,48 +61,37 @@ public class ArrayData {
     initalizeArray(colData);
   }
 
-  private void initalizeArray(int array[][]) {
-    for (int i = 0; i < rows; ++i) {
-      for (int j = 0; j < columns; ++j) {
-        array[i][j] = 0;
-      }
-    }
-  }
-
-  private void initalizeArray(int array[]) {
-    for (int i = 0; i < array.length; ++i) {
-      array[i] = 0;
-    }
-  }
-
-  private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
-    for (int i = 0; i < array.length; ++i) {
-      for (int j = 0; j < array.length; ++j) {
-        array[i][j] = startingValue;
-      }
-    }
-  }
-
   public void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
     for (int i = 0; i < total; ++i) {
       values[getRandomNumberInRange(maxRow, minRow)][getRandomNumberInRange(maxCol, minCol)] = newValue;
     }
   }
 
-  private int getRandomNumberInRange(int max, int min) {
-    Random rand = new Random();
-    return (rand.nextInt((max - min) + 1) + min - 1);
-  }
-
+  /**
+   * Displays all the elements in the ith row along with the ith element in rowData 
+   * separated by two pipes("||") and finally all the elements in the colData
+   */
   public void print() {
-    System.out.println("\n-----------------------------------------");
-    for (int i = 0; i < values.length; ++i) {
-      System.out.print("| ");
-      for (int j = 0; j < columns; j++) {
-        System.out.print(values[i][j] + " | ");
+    System.out.println("");
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < columns; ++j) {
+        if (j == (columns - 1)) {
+          System.out.print(values[i][j] + " || ");
+        } else {
+          System.out.print(values[i][j] + " | ");
+        }
       }
-      System.out.println("\n-----------------------------------------");
+      System.out.print(rowData[i]);
+      System.out.print("\n");
     }
+    for (int i = 0; i < columns; ++i) {
+      if (i == (columns - 1)) {
+        System.out.print(colData[i]);
+      } else {
+        System.out.print(colData[i] + " | ");
+      }
+    }
+    System.out.println("");
   }
 
   public void print(int rows, int columns) {
@@ -206,48 +210,6 @@ public class ArrayData {
       values[nom][numb] = val;
       i++;
     }
-  }
-
-  private double averageRow(int r) {
-    /* Dwanye */
-    double sumRow = 0;
-    double avgRow = 0;
-    double sample = 0;
-
-    int row = 0;
-    while (row < rowData.length) {
-      if (row == r) {
-        for (int col = 0; col < colData.length; col++) {
-          sumRow += values[row][col];
-        }
-        break;
-      }
-      row++;
-    }
-    sample = 10;
-    avgRow = sumRow / sample;
-    return avgRow;
-  }
-
-  private double averageCol(int c) {
-    /* Dwanye */
-    double sumCol = 0;
-    double avgCol = 0;
-    double sample = 0;
-
-    int row = 0;
-    while (row < rowData.length) {
-      if (row == c) {
-        for (int col = 0; col < colData.length; col++) {
-          sumCol += values[col][row];
-        }
-        break;
-      }
-      row++;
-    }
-    sample = 10;
-    avgCol = sumCol / sample;
-    return avgCol;
   }
 
   public void standardDeviation() {
@@ -372,5 +334,74 @@ public class ArrayData {
     quotient = oddT / evenT;
 
     return quotient;
+  }
+
+  private void initalizeArray(int array[][]) {
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < columns; ++j) {
+        array[i][j] = 0;
+      }
+    }
+  }
+
+  private void initalizeArray(int array[]) {
+    for (int i = 0; i < array.length; ++i) {
+      array[i] = 0;
+    }
+  }
+
+  private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
+    for (int i = 0; i < array.length; ++i) {
+      for (int j = 0; j < array.length; ++j) {
+        array[i][j] = startingValue;
+      }
+    }
+  }
+
+  private int getRandomNumberInRange(int max, int min) {
+    Random rand = new Random();
+    return (rand.nextInt((max - min) + 1) + min - 1);
+  }
+
+  private double averageRow(int r) {
+    /* Dwanye */
+    double sumRow = 0;
+    double avgRow = 0;
+    double sample = 0;
+
+    int row = 0;
+    while (row < rowData.length) {
+      if (row == r) {
+        for (int col = 0; col < colData.length; col++) {
+          sumRow += values[row][col];
+        }
+        break;
+      }
+      row++;
+    }
+    sample = 10;
+    avgRow = sumRow / sample;
+    return avgRow;
+  }
+
+  private double averageCol(int c) {
+    /* Dwanye */
+    double sumCol = 0;
+    double avgCol = 0;
+    double sample = 0;
+
+    int row = 0;
+    while (row < rowData.length) {
+      if (row == c) {
+        for (int col = 0; col < colData.length; col++) {
+          sumCol += values[col][row];
+        }
+        break;
+      }
+      row++;
+    }
+    sample = 10;
+    avgCol = sumCol / sample;
+    return avgCol;
   }
 }
