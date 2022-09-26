@@ -8,7 +8,7 @@ public class TestArrayData {
 
     s.print();
 
-    s.flip(50, 2);
+    s.flip(50, 6);
 
     s.print();
 
