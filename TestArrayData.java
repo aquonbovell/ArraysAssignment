@@ -4,7 +4,7 @@ public class TestArrayData {
 
   public static void main(String[] args) {
     ArrayData s = new ArrayData();
-    s.generate(6, 30, 1, 8, 1, 8);
+    s.generate(6, 30, 18, 8, 1, 8);
 
     s.print();
 
