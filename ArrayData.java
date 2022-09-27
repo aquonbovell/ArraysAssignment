@@ -374,6 +374,8 @@ public class ArrayData {
     prodRow = new int[rows];
     Random rand = new Random();
     int i = 0, j = 0;
+    initalizeArrayWithStartingValue(prodRow,1);
+    initalizeArrayWithStartingValue(prodCol,1);
     while (i <= rows) {
       while (j <= columns) {
         prodRow[i] *= values[i][j];
@@ -438,6 +440,12 @@ public class ArrayData {
   private void initalizeArray(int array[]) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = 0;
+    }
+  }
+
+  private void initalizeArrayWithStartingValue(int array[], int startingValue) {
+    for (int i = 0; i < array.length; ++i) {
+      array[i] = startingValue;
     }
   }
 
