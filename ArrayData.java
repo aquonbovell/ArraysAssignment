@@ -200,12 +200,12 @@ public class ArrayData {
   
   public void standardDeviation() {
     /* Dwanye */
-    int sampleSize = 10;
-    double[] y = new double[10];
-    int[] standardDeviaRow = new int[10];
-    double[][] deviationsRow = new double[10][10];
-    double[][] sqDeviationsRow = new double[10][10];
-    double[] sumSqDeviationsRow = new double[10];
+    int sampleSize = rowData.length;
+    double[] y = new double[rowData.length];
+    int[] standardDeviaRow = new int[rowData.length];
+    double[][] deviationsRow = new double[rowData.length][colData.length];
+    double[][] sqDeviationsRow = new double[rowData.length][colData.length];
+    double[] sumSqDeviationsRow = new double[rowData.length];
 
     for (int row = 0; row < rowData.length; row++) {
       for (int col = 0; col < colData.length; col++) {
@@ -249,12 +249,12 @@ public class ArrayData {
     }
 
     // Doing the same method for columns
-    double[] z = new double[10];
-    int[] standardDeviaCol = new int[10];
-
-    double[][] deviationsCol = new double[10][10];
-    double[][] sqDeviationsCol = new double[10][10];
-    double[] sumSqDeviationsCol = new double[10];
+    double[] z = new double[colData.length];
+    int[] standardDeviaCol = new int[colData.length];
+    
+    double[][] deviationsCol = new double[colData.length][colData.length];
+    double[][] sqDeviationsCol = new double[colData.length][colData.length];
+    double[] sumSqDeviationsCol = new double[colData.length];
 
     for (int row = 0; row < rowData.length; row++) {
       for (int col = 0; col < colData.length; col++) {
