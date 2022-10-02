@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.lang.Math;
+import java.util.Arrays;
 
 public class ArrayData {
   private int rows, columns, values[][], rowData[], colData[];
@@ -143,11 +144,17 @@ public class ArrayData {
     }
   }
 
+  /**
+   * This method will change the values of a specified number of grid positions
+   * and change their value to a specified amount
+   * This method accepts two values num and val
+   */
   public void flip(int num, int val) {
     /* checked */
     /* Kenez */
-    Random rand = new Random();
-    int i = 0;
+    Random rand = new Random(); // Creating an instance of Random to generate a random number for the rows and
+                                // columns
+    int i = 0;// Counter variable to control the iterations.
 
     while (i < num) {
       int nom = rand.nextInt(rows);
@@ -192,12 +199,12 @@ public class ArrayData {
       int colOccurrences = 0;
       for (int j = 0; j < columns; ++j) {
         if (values[j][i] % num == 0)
-        ++colOccurrences;
+          ++colOccurrences;
       }
       colData[i] = colOccurrences;
     }
   }
-  
+
   public void standardDeviation() {
     /* Dwanye */
     int sampleSize = rowData.length;
@@ -207,12 +214,8 @@ public class ArrayData {
     double[][] sqDeviationsRow = new double[rowData.length][colData.length];
     double[] sumSqDeviationsRow = new double[rowData.length];
 
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        deviationsRow[row][col] = 0;
-        sqDeviationsRow[row][col] = 0;
-      }
-    }
+    initalizeArray(deviationsRow);
+    initalizeArray(sqDeviationsRow);
 
     for (int row = 0; row < rowData.length; row++) {
       for (int col = 0; col < colData.length; col++) {
@@ -251,17 +254,13 @@ public class ArrayData {
     // Doing the same method for columns
     double[] z = new double[colData.length];
     int[] standardDeviaCol = new int[colData.length];
-    
+
     double[][] deviationsCol = new double[colData.length][colData.length];
     double[][] sqDeviationsCol = new double[colData.length][colData.length];
     double[] sumSqDeviationsCol = new double[colData.length];
 
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        deviationsCol[row][col] = 0;
-        sqDeviationsCol[row][col] = 0;
-      }
-    }
+    initalizeArray(deviationsCol);
+    initalizeArray(sqDeviationsCol);
 
     for (int row = 0; row < rowData.length; row++) {
       for (int col = 0; col < colData.length; col++) {
@@ -367,15 +366,21 @@ public class ArrayData {
     System.out.println();
   }
 
+  /**
+   * This method calculates the product of each row and column and stores a value
+   * less than minimum values passed to it for that row or column
+   * This method accepts values representing a maximum and a minimum limit and
+   * returns nothing
+   */
   public void product(int min, int max) {
     /* Kenez */
-    int prodCol[], prodRow[];
-    prodCol = new int[columns];
-    prodRow = new int[rows];
-    Random rand = new Random();
-    int i = 0, j = 0;
-    initalizeArrayWithStartingValue(prodRow,1);
-    initalizeArrayWithStartingValue(prodCol,1);
+    int prodCol[], prodRow[];// Arrays to store the product of the columns and rows repesectively
+    prodCol = new int[columns];// Declaring columns' product array.
+    prodRow = new int[rows];// Declaring rows' product array.
+    Random rand = new Random();// Creating and instance of a random operator.
+    int i = 0, j = 0;// Counter variables to traverse the grid.
+    initalizeArrayWithStartingValue(prodRow, 1);
+    initalizeArrayWithStartingValue(prodCol, 1);
     while (i <= rows) {
       while (j <= columns) {
         prodRow[i] *= values[i][j];
@@ -406,9 +411,15 @@ public class ArrayData {
     }
   }
 
+  /**
+   * This method sums the values of the odd and even positions within a grid and
+   * divide the odd by the even positions
+   * This method does not accept any values but returns a double 'quotient'
+   */
   public double checkeredOdd() {
-    int odd = 0, even = 0, oddT = 0, evenT = 0;
-    double quotient = 0.0;
+    int odd = 0, even = 0, oddT = 0, evenT = 0; // Declaring the variables that would determine if a grid location is
+                                                // odd or even.
+    double quotient = 0.0; // Declaring the quotient variable that will be returned.
     for (int i = 0; i <= rows; i++) {
       for (int j = 1; j <= columns; j++) {
         if (i % 2 == 0) {
@@ -437,12 +448,31 @@ public class ArrayData {
     }
   }
 
+  private void initalizeArray(double array[][]) {
+    for (int i = 0; i < rows; ++i) {
+      for (int j = 0; j < columns; ++j) {
+        array[i][j] = 0;
+      }
+    }
+  }
+
+  private void initalizeArray(double array[]) {
+    for (int i = 0; i < rows; ++i) {
+      array[i] = 0;
+    }
+  }
+
   private void initalizeArray(int array[]) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = 0;
     }
   }
 
+  /**
+   * This method initializes the positions within any array passed to it to the
+   * corresponding value passed to it
+   * This method accepts two values array[] and an integer j
+   */
   private void initalizeArrayWithStartingValue(int array[], int startingValue) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = startingValue;
@@ -483,6 +513,22 @@ public class ArrayData {
     return avgRow;
   }
 
+  public double[] averageArrayRow() {
+    /* Dwanye */
+    double avgrow[] = new double[rows];
+    initalizeArray(avgrow);
+
+    int row = 0;
+    for (int i = 0; i < rows; i++) {
+      double sumRow = 0;
+      for (int j = 0; j < columns; j++) {
+        sumRow += values[i][j];
+      }
+      avgrow[i] = (sumRow / rows);
+    }
+    return avgrow;
+  }
+
   private double averageCol(int c) {
     /* Dwanye */
     double sumCol = 0;
@@ -503,4 +549,114 @@ public class ArrayData {
     avgCol = sumCol / sample;
     return avgCol;
   }
+
+  // public void standardDeviationn() {
+  // /* Dwanye */
+  // int sampleSize = rowData.length;
+  // double[] mu = averageArrayRow();
+  // double[][] deviationsRow = new double[rowData.length][colData.length];
+  // double[] sumDeviationsRow = new double[rowData.length];
+
+  // initalizeArray(deviationsRow);
+  // initalizeArray(sumDeviationsRow);
+
+  // for (int row = 0; row < rowData.length; row++) {
+  // for (int col = 0; col < colData.length; col++) {
+  // deviationsRow[row][col] = values[row][col] - mu[row];
+  // }
+  // }
+
+  // for (int row = 0; row < rowData.length; row++) {
+  // for (int col = 0; col < colData.length; col++) {
+  // deviationsRow[row][col] *= deviationsRow[row][col];
+  // }
+  // }
+
+  // for (int row = 0; row < rowData.length; row++) {
+  // double sum =0;
+  // for (int col = 0; col < colData.length; col++) {
+  // sum+=deviationsRow[row][col];
+  // }
+  // sumDeviationsRow[row]=Math.sqrt(sum/10);
+  // }
+  // for (int i = 0; i < rowData.length; i++) {
+  // rowData[i] =(int)sumDeviationsRow[i];
+  // }
+
+  // System.out.println(Arrays.toString(rowData));
+  // System.out.println(Arrays.toString(sumDeviationsRow));
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // y[i] = sumSqDeviationsRow[i] / sampleSize;
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // y[i] = Math.sqrt(y[i]);
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // standardDeviaRow[i] = (int) y[i];
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // rowData[i] = standardDeviaRow[i];
+  // // }
+
+  // // // Doing the same method for columns
+  // // double[] z = new double[colData.length];
+  // // int[] standardDeviaCol = new int[colData.length];
+
+  // // double[][] deviationsCol = new double[colData.length][colData.length];
+  // // double[][] sqDeviationsCol = new double[colData.length][colData.length];
+  // // double[] sumSqDeviationsCol = new double[colData.length];
+
+  // // initalizeArray(deviationsCol);
+  // // initalizeArray(sqDeviationsCol);
+
+  // // for (int row = 0; row < rowData.length; row++) {
+  // // for (int col = 0; col < colData.length; col++) {
+  // // deviationsCol[col][row] = values[col][row] - averageCol(col);
+  // // }
+  // // }
+
+  // // for (int row = 0; row < rowData.length; row++) {
+  // // for (int col = 0; col < colData.length; col++) {
+  // // sqDeviationsCol[col][row] = deviationsCol[col][row] *
+  // // deviationsCol[col][row];
+  // // }
+  // // }
+
+  // // for (int row = 0; row < rowData.length; row++) {
+  // // for (int col = 0; col < colData.length; col++) {
+  // // sumSqDeviationsCol[row] += sqDeviationsCol[col][row];
+  // // }
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // z[i] = sumSqDeviationsCol[i] / sampleSize;
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // z[i] = Math.sqrt(z[i]);
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // standardDeviaCol[i] = (int) z[i];
+  // // }
+
+  // // for (int i = 0; i < rowData.length; i++) {
+  // // colData[i] = standardDeviaCol[i];
+  // // }
+
+  // // // // temp for outputing data to the screen.
+  // // // for (int row = 0; row < rowData.length; row++) {
+  // // // System.out.println(rowData[row]);
+  // // // }
+
+  // // // System.out.println();
+
+  // // // for (int row = 0; row < rowData.length; row++) {
+  // // // System.out.println(colData[row]);
+  // // // }
+  // }
 }

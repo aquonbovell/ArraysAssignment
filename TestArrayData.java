@@ -10,13 +10,20 @@ public class TestArrayData {
 
     s.flip(50, 2);
 
-    s.print();
+    // double a[] = s.averageArrayRow()?;
+    s.standardDeviation();
+    // s.print();
+// System.out.println(Arrays.toString(a));
+    // s.print();
 
-    s.sum();
+    // s.print();
 
-    s.occurrence(6);
+    // s.sum();
+    s.product(0, 0);
 
-    System.out.println(Arrays.toString(s.getColData()));
-    System.out.println(Arrays.toString(s.getRowData()));
+    // s.occurrence(6);
+
+    // System.out.println(Arrays.toString(s.getColData()));
+    // System.out.println(Arrays.toString(s.getRowData()));
   }
 }
