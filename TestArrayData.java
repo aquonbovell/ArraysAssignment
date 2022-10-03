@@ -12,6 +12,7 @@ public class TestArrayData {
 
     // double a[] = s.averageArrayRow()?;
     s.standardDeviation();
+    s.print(10, 10);
     // s.print();
 // System.out.println(Arrays.toString(a));
     // s.print();

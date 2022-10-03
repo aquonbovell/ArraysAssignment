@@ -204,107 +204,21 @@ public class ArrayData {
       colData[i] = colOccurrences;
     }
   }
-
+  /**
+   * The method below stores the calculation of the standard deviations
+   * in the rowData for each row.
+   * And stores the calculation of the standard deviations in the colData
+   * for each column.
+   */
   public void standardDeviation() {
-    /* Dwanye */
-    int sampleSize = rowData.length;
-    double[] y = new double[rowData.length];
-    int[] standardDeviaRow = new int[rowData.length];
-    double[][] deviationsRow = new double[rowData.length][colData.length];
-    double[][] sqDeviationsRow = new double[rowData.length][colData.length];
-    double[] sumSqDeviationsRow = new double[rowData.length];
-
-    initalizeArray(deviationsRow);
-    initalizeArray(sqDeviationsRow);
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        deviationsRow[row][col] = values[row][col] - averageRow(col);
-      }
-    }
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        sqDeviationsRow[row][col] = deviationsRow[row][col] * deviationsRow[row][col];
-      }
-    }
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        sumSqDeviationsRow[row] += sqDeviationsRow[row][col];
-      }
+    /* Dwayne */
+    /* Method is working */
+    for (int i = 0; i < rowData.length; i++) {
+      rowData[i] = calStandardDeviation()[i];
     }
 
     for (int i = 0; i < rowData.length; i++) {
-      y[i] = sumSqDeviationsRow[i] / sampleSize;
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      y[i] = Math.sqrt(y[i]);
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      standardDeviaRow[i] = (int) y[i];
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      rowData[i] = standardDeviaRow[i];
-    }
-
-    // Doing the same method for columns
-    double[] z = new double[colData.length];
-    int[] standardDeviaCol = new int[colData.length];
-
-    double[][] deviationsCol = new double[colData.length][colData.length];
-    double[][] sqDeviationsCol = new double[colData.length][colData.length];
-    double[] sumSqDeviationsCol = new double[colData.length];
-
-    initalizeArray(deviationsCol);
-    initalizeArray(sqDeviationsCol);
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        deviationsCol[col][row] = values[col][row] - averageCol(col);
-      }
-    }
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        sqDeviationsCol[col][row] = deviationsCol[col][row] * deviationsCol[col][row];
-      }
-    }
-
-    for (int row = 0; row < rowData.length; row++) {
-      for (int col = 0; col < colData.length; col++) {
-        sumSqDeviationsCol[row] += sqDeviationsCol[col][row];
-      }
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      z[i] = sumSqDeviationsCol[i] / sampleSize;
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      z[i] = Math.sqrt(z[i]);
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      standardDeviaCol[i] = (int) z[i];
-    }
-
-    for (int i = 0; i < rowData.length; i++) {
-      colData[i] = standardDeviaCol[i];
-    }
-
-    // temp for outputing data to the screen.
-    for (int row = 0; row < rowData.length; row++) {
-      System.out.println(rowData[row]);
-    }
-
-    System.out.println();
-
-    for (int row = 0; row < rowData.length; row++) {
-      System.out.println(colData[row]);
+      colData[i] = calStandardDeviation()[i];
     }
   }
 
@@ -490,6 +404,71 @@ public class ArrayData {
   private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
     return (rand.nextInt(max - min) + min - 1);
+  }
+
+  /**
+   * The sumSqDeviation method,
+   * firstly, the method subtracts the average (using the average method) from each value in the 
+   * values array and stores it in the deviation array.
+   * Secondly, the deviations are squared and the result is store in SqDeviations.
+   * Thirdly, the squared deviations are summed and stored in sumSqDeviation.
+   */
+  private double[] sumSqDeviation() {
+    
+    double[][] deviations = new double[rowData.length][colData.length]; //Declaring the deviations array and it is used to store the deviation values 
+    double[][] sqDeviations = new double[rowData.length][colData.length]; //Declaring the sqDeviations array and it is used to store the deivations squared
+    double[] sumSqDeviations = new double[rowData.length]; //Declaring the sumSqDeviations array and it is used to store the summation of the squared deviations
+
+    initalizeArray(deviations);
+    initalizeArray(sqDeviations);
+    initalizeArray(sumSqDeviations);
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviations[row][col] = values[row][col] - averageRow(col);
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sqDeviations[row][col] = deviations[row][col] * deviations[row][col];
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sumSqDeviations[row] += sqDeviations[row][col];
+      }
+    }
+    
+    return sumSqDeviations;
+  }
+
+  /**
+   * To be continued 
+   * 
+   */
+  private int[] calStandardDeviation() {
+    int sampleSize = rowData.length;
+    double[] placeHolder = new double[rowData.length];
+    int[] standardDeviaRow = new int[rowData.length];
+    
+    initalizeArray(placeHolder);
+    initalizeArray(standardDeviaRow);
+
+    for (int i = 0; i < rowData.length; i++) {
+      placeHolder[i] = sumSqDeviation()[i]/sampleSize;
+    }
+
+    for (int i = 0; i < rowData.length; i++) {
+      placeHolder[i] = Math.sqrt(placeHolder[i]);
+    }
+
+    for (int i = 0; i < rowData.length; i++) {
+      standardDeviaRow[i] = (int) placeHolder[i];
+    }
+    
+    return standardDeviaRow;
   }
 
   private double averageRow(int r) {
