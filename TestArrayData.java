@@ -1,30 +1,12 @@
-import java.util.Arrays;
-
 public class TestArrayData {
 
   public static void main(String[] args) {
-    ArrayData s = new ArrayData();
-    s.generate(6, 30, 1, 8, 1, 8);
+    ArrayData s = new ArrayData(10, 10);
+    // s.generate(6, 30, 1, 8, 1, 8);
 
+    // s.product(256, 9000);
+    s.flip(8,6);
     s.print();
-
-    s.flip(50, 2);
-
-    // double a[] = s.averageArrayRow()?;
-    s.standardDeviation();
-    s.print(10, 10);
-    // s.print();
-// System.out.println(Arrays.toString(a));
-    // s.print();
-
-    // s.print();
-
-    // s.sum();
-    s.product(0, 0);
-
-    // s.occurrence(6);
-
-    // System.out.println(Arrays.toString(s.getColData()));
-    // System.out.println(Arrays.toString(s.getRowData()));
+    // System.out.println(s.checkeredOdd());
   }
 }
