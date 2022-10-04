@@ -77,7 +77,7 @@ public class ArrayData {
     if (rows >= 0) {
       this.rows = rows;
     } else {
-      this.rows = 0;
+      this.rows = 10;
       System.out.println("rows must be positive");
     }
   }
@@ -102,7 +102,7 @@ public class ArrayData {
     if (columns >= 0) {
       this.columns = columns;
     } else {
-      this.columns = 0;
+      this.columns = 10;
       System.out.println("columns must be positive");
     }
   }
