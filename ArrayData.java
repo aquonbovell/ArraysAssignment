@@ -3,6 +3,8 @@ import java.lang.Math;
 
 public class ArrayData {
   private int rows, columns, values[][], rowData[], colData[];
+  private int checkingForCol = 0; //The checkingForCol is used for the calStandardDeviation method to distinguish 
+                              //between the rowData and ColData
 
   /**
    * Set rows and columns to their default value of 10 and construct rowData array
@@ -237,12 +239,12 @@ public class ArrayData {
    */
   public void standardDeviation() {
     /* Dwayne */
-    /* Method is working */
     for (int i = 0; i < rowData.length; i++) {
       rowData[i] = calStandardDeviation()[i];
     }
 
     for (int i = 0; i < rowData.length; i++) {
+      checkingForCol = 1;
       colData[i] = calStandardDeviation()[i];
     }
   }
@@ -446,8 +448,8 @@ public class ArrayData {
   }
 
   /**
-   * The sumSqDeviation method,
-   * firstly, the method subtracts the average (using the average method) from
+   * The sumSqDeviation() method,
+   * firstly, the method subtracts the average (using the averageRow method) from
    * each value in the
    * values array and stores it in the deviation array.
    * Secondly, the deviations are squared and the result is store in SqDeviations.
@@ -468,7 +470,7 @@ public class ArrayData {
 
     for (int row = 0; row < rowData.length; row++) {
       for (int col = 0; col < colData.length; col++) {
-        deviations[row][col] = values[row][col] - averageRow(col);
+        deviations[row][col] = values[row][col] - averageRow(row);
       }
     }
 
@@ -488,19 +490,71 @@ public class ArrayData {
   }
 
   /**
-   * To be continued
-   * 
+   * The sumSqDeviationCol() method,
+   * firstly, the method subtracts the average (using the averageCol method) from
+   * each value in the
+   * values array and stores it in the deviation array.
+   * Secondly, the deviations are squared and the result is store in SqDeviations.
+   * Thirdly, the squared deviations are summed and stored in sumSqDeviationCol.
+   */
+
+  private double[] sumSqDeviationCol() {
+    
+    double[][] deviations = new double[rowData.length][colData.length]; // Declaring the deviations array and it is used
+                                                                        // to store the deviation values
+    double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
+                                                                          // used to store the deivations squared
+    double[] sumSqDeviations = new double[rowData.length]; // Declaring the sumSqDeviations array and it is used to
+                                                          // store the summation of the squared deviations
+
+    initalizeArray(deviations);
+    initalizeArray(sqDeviations);
+    initalizeArray(sumSqDeviations);
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        deviations[col][row] = values[col][row] - averageCol(row);
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sqDeviations[col][row] = deviations[col][row] * deviations[col][row];
+      }
+    }
+
+    for (int row = 0; row < rowData.length; row++) {
+      for (int col = 0; col < colData.length; col++) {
+        sumSqDeviations[row] += sqDeviations[col][row];
+      }
+    }
+    return sumSqDeviations;
+}
+
+  /**
+   * The calStandardDeviation() method 
+   * Checks to see which sumSqDeviation to use using the checkingForCol field
+   * A placeHolder stores the variance as a double
+   * Then the placeHolder is rooted using the Math.sqrt() method
+   * Afterwards the placeHolder is converted into a integer and stored in the field standardDevia
    */
   private int[] calStandardDeviation() {
-    int sampleSize = rowData.length;
-    double[] placeHolder = new double[rowData.length];
-    int[] standardDeviaRow = new int[rowData.length];
+    int sampleSize = rowData.length; //The sampleSize is used as the population value for the standard deviation
+    double[] placeHolder = new double[rowData.length]; //The placeHolder's purpose is to store the value of the standard deviation temporarily as a double
+    int[] standardDevia = new int[rowData.length]; //The standardDevia's purpose is to store the final value of the standard deviation as an integer
 
     initalizeArray(placeHolder);
-    initalizeArray(standardDeviaRow);
+    initalizeArray(standardDevia);
 
-    for (int i = 0; i < rowData.length; i++) {
-      placeHolder[i] = sumSqDeviation()[i] / sampleSize;
+    if (checkingForCol == 0) {
+      for (int i = 0; i < rowData.length; i++) {
+        placeHolder[i] = sumSqDeviation()[i]/sampleSize;
+      }
+    }
+    else if (checkingForCol == 1) {
+      for (int i = 0; i < rowData.length; i++) {
+        placeHolder[i] = sumSqDeviationCol()[i]/sampleSize;
+      }
     }
 
     for (int i = 0; i < rowData.length; i++) {
@@ -508,12 +562,15 @@ public class ArrayData {
     }
 
     for (int i = 0; i < rowData.length; i++) {
-      standardDeviaRow[i] = (int) placeHolder[i];
+      standardDevia[i] = (int) placeHolder[i];
     }
 
-    return standardDeviaRow;
+    return standardDevia;
   }
 
+  /*
+   * To be continued
+   */
   private double averageRow(int r) {
     /* Dwanye */
     double sumRow = 0;
@@ -551,6 +608,9 @@ public class ArrayData {
     return avgrow;
   }
 
+  /*
+   * To be continued
+   */
   private double averageCol(int c) {
     /* Dwanye */
     double sumCol = 0;
