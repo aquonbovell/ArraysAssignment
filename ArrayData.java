@@ -1,10 +1,20 @@
 import java.util.Random;
 import java.lang.Math;
 
+/*
+ * The names of the programmers are:
+ * Aquon Bovell, Kenez Horne and Dwayne Archer
+ * The ArrayData class contains multiple methods and fields 
+ * The basic functionality of the ArrayData class is to manipulate 
+ * the two dimensional values Array
+ * Also calculations are performed on the values array and the results are stored 
+ * in the rowData and colData arrays
+ */
+
 public class ArrayData {
   private int rows, columns, values[][], rowData[], colData[];
   private int checkingForCol = 0; //The checkingForCol is used for the calStandardDeviation method to distinguish 
-                              //between the rowData and ColData
+                                  //between the rowData and ColData
 
   /**
    * Set rows and columns to their default value of 10 and construct rowData array
@@ -400,6 +410,11 @@ public class ArrayData {
     }
   }
 
+  /**
+   * The initalizeArray(double array[][]) initializes the elements of a two dimensional array to zero
+   * The parameter of the method is a two dimensional array
+   * with the return type of a double
+   */
   private void initalizeArray(double array[][]) {
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < columns; ++j) {
@@ -407,6 +422,12 @@ public class ArrayData {
       }
     }
   }
+
+  /**
+   * The initalizeArray(int array[][]) initializes the elements of a two dimensional array to zero
+   * The parameter of the method is a two dimensional array
+   * with a return type of an integer
+   */
 
   private void initalizeArray(int array[][]) {
     for (int i = 0; i < rows; ++i) {
@@ -416,24 +437,46 @@ public class ArrayData {
     }
   }
 
+  /**
+   * The initalizeArray(double array[]) initializes the elements of a one dimensional array to zero
+   * The parameter of the method is a one dimensional array
+   * with a return type of a double
+   */
   private void initalizeArray(double array[]) {
     for (int i = 0; i < rows; ++i) {
       array[i] = 0;
     }
   }
 
+  /**
+   * The initalizeArray(int array[]) initializes the elements of a one dimensional array to zero
+   * The parameter of the method is a one dimensional array
+   * with a return type of an integer
+   */
   private void initalizeArray(int array[]) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = 0;
     }
   }
 
+  /**
+   * The initalizeArrayWithStartingValue(int array[], int startingValue) method
+   * initializes the elements of the one dimensional array to the starting value
+   * The two parameters are an integer one dimensional array and 
+   * a starting value which is an integer
+   */
   private void initalizeArrayWithStartingValue(int array[], int startingValue) {
     for (int i = 0; i < array.length; ++i) {
       array[i] = startingValue;
     }
   }
 
+  /**
+   * The initalizeArrayWithStartingValue(int array[][], int startingValue) method
+   * initializes the elements of the two dimensional array to the starting value
+   * The two parameters are an integer two dimensional array and 
+   * a starting value which is an integer
+   */
   private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < columns; ++j) {
@@ -442,6 +485,12 @@ public class ArrayData {
     }
   }
 
+  /**
+   * The getRandomNumberInRange(int max, int min) method
+   * basically gets a random number between the maximum and minimum numbers
+   * Then it returns that random number
+   * The two parameters for the method is a maximum number and a minimum number
+   */
   private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
     return (rand.nextInt(max - min));
@@ -454,6 +503,7 @@ public class ArrayData {
    * values array and stores it in the deviation array.
    * Secondly, the deviations are squared and the result is store in SqDeviations.
    * Thirdly, the squared deviations are summed and stored in sumSqDeviation.
+   * Then the sumSqDeviation array is returned
    */
   private double[] sumSqDeviation() {
 
@@ -496,6 +546,7 @@ public class ArrayData {
    * values array and stores it in the deviation array.
    * Secondly, the deviations are squared and the result is store in SqDeviations.
    * Thirdly, the squared deviations are summed and stored in sumSqDeviationCol.
+   * Then the sumSqDeviationCol array is returned 
    */
 
   private double[] sumSqDeviationCol() {
@@ -537,6 +588,7 @@ public class ArrayData {
    * A placeHolder stores the variance as a double
    * Then the placeHolder is rooted using the Math.sqrt() method
    * Afterwards the placeHolder is converted into a integer and stored in the field standardDevia
+   * Then the standardDevia is returned which is the final value of the standard deviation
    */
   private int[] calStandardDeviation() {
     int sampleSize = rowData.length; //The sampleSize is used as the population value for the standard deviation
@@ -568,14 +620,18 @@ public class ArrayData {
     return standardDevia;
   }
 
-  /*
-   * To be continued
+  /**
+   * The purpose of the averageRow(int r) method 
+   * is to find the avergage of each row in the values array 
+   * for the standard deviation
+   * r is the parameter of the method and r is the row index for the values array
+   * The value returned from the method is avgRow which is the average for the specific row index
    */
   private double averageRow(int r) {
     /* Dwanye */
-    double sumRow = 0;
-    double avgRow = 0;
-    double sample = 0;
+    double sumRow = 0; //sumRow stores the sum of all of the numbers in the specific row in the values array
+    double avgRow = 0; //avgRow stores the average for the specific row in the values array
+    double sample = 0; //sample is the sample size of the row which is ten
 
     int row = 0;
     while (row < rowData.length) {
@@ -587,19 +643,23 @@ public class ArrayData {
       }
       row++;
     }
-    sample = 10;
+    sample = rowData.length;
     avgRow = sumRow / sample;
     return avgRow;
   }
 
-  /*
-   * To be continued
+  /**
+   * The purpose of the averageCol(int c) method 
+   * is to find the average of each column in the values array
+   * for the standard deviation
+   * c is the parameter of the method and c is the column index for the values array
+   * The value returned is avgCol which is the average for the specific column index
    */
   private double averageCol(int c) {
     /* Dwanye */
-    double sumCol = 0;
-    double avgCol = 0;
-    double sample = 0;
+    double sumCol = 0; //sumCol stores the sum of all of the numbers in the specific column in the values array
+    double avgCol = 0; //avgCol stores the average for the specific column in the values array
+    double sample = 0; //sample is the sample size of the column which is ten
 
     int row = 0;
     while (row < rowData.length) {
@@ -611,7 +671,7 @@ public class ArrayData {
       }
       row++;
     }
-    sample = 10;
+    sample = colData.length;
     avgCol = sumCol / sample;
     return avgCol;
   }
