@@ -12,7 +12,7 @@ import java.lang.Math;
  */
 
 public class ArrayData {
-  public int rows, columns, values[][], rowData[], colData[];
+  private int rows, columns, values[][], rowData[], colData[];
   private int checkingForCol = 0; // The checkingForCol is used for the calStandardDeviation method to distinguish
                                   // between the rowData and ColData
 
@@ -482,7 +482,7 @@ public class ArrayData {
    * The value returned is an integer between one least than the max and and one least than
    * the min.
    */
-  public int getRandomNumberInRange(int max, int min) {
+  private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
     return (rand.nextInt((max - min + 1)) + min - 1);
   }
