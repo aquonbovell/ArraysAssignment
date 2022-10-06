@@ -273,6 +273,60 @@ public class ArrayData {
   }
 
   /**
+   * Calculates the product of each row and column separately and decrements the
+   * value of a random member in each row or column by 1 until the product of 
+   * each row or column is less than the specified value of min and then stores the
+   * result in rowData and colData respectively.
+   * The parameters are min which represents the minimum value to decide if to decrement
+   * a random value in the values array and max which represents the maximun value to decide if to decrement
+   * a random value in the values array.
+   * There are no values that are returned.
+   */
+  public void product(int min, int max) {
+    /* Kenez */
+    /* checked */
+    int productCol[], productRow[]; // Arrays to store the product of the columns and rows repesectively
+    productCol = new int[columns];  // Declaring columns' product array.
+    productRow = new int[rows];     // Declaring rows' product array.
+    Random rand = new Random();     // Creating and instance of a random operator.
+    int i = 0, j = 0;               // Counter variables to traverse the grid.
+    initalizeArrayWithStartingValue(productRow, 1);
+    initalizeArrayWithStartingValue(productCol, 1);
+    while (i < rows) {
+      while (j < columns) {
+        productRow[i] *= values[i][j];
+        j++;
+      }
+      if ((productRow[i] >= min) && (productRow[i] <= max)) {
+        int randomNumber = rand.nextInt(columns);
+        values[i][randomNumber] -= 1;
+        productRow[i] = 1;
+      } else {
+        rowData[i] = productRow[i];
+        i++;
+      }
+      j = 0;
+    }
+    j = 0;
+    i = 0;
+    while (j < columns) {
+      while (i < rows) {
+        productCol[j] *= values[i][j];
+        i++;
+      }
+      if ((productCol[j] >= min) && (productCol[j] <= max)) {
+        int randomNumber = rand.nextInt(rows);
+        values[randomNumber][j] -= 1;
+        productCol[j] = 1;
+      } else {
+        colData[j] = productCol[j];
+        j++;
+      }
+      i = 0;
+    }
+  }
+
+  /**
    * Displays all the elements in the ith row along with the ith element in
    * rowData separated by two pipes ("||") and finally all the elements in
    * the colData on a separate line.
@@ -341,60 +395,6 @@ public class ArrayData {
       j++;
     }
     System.out.println("");
-  }
-
-  /**
-   * Calculates the product of each row and column separately and decrements the
-   * value of a random member in each row or column by 1 until the product of 
-   * each row or column is less than the specified value of min and then stores the
-   * result in rowData and colData respectively.
-   * The parameters are min which represents the minimum value to decide if to decrement
-   * a random value in the values array and max which represents the maximun value to decide if to decrement
-   * a random value in the values array.
-   * There are no values that are returned.
-   */
-  public void product(int min, int max) {
-    /* Kenez */
-    /* checked */
-    int productCol[], productRow[]; // Arrays to store the product of the columns and rows repesectively
-    productCol = new int[columns];  // Declaring columns' product array.
-    productRow = new int[rows];     // Declaring rows' product array.
-    Random rand = new Random();     // Creating and instance of a random operator.
-    int i = 0, j = 0;               // Counter variables to traverse the grid.
-    initalizeArrayWithStartingValue(productRow, 1);
-    initalizeArrayWithStartingValue(productCol, 1);
-    while (i < rows) {
-      while (j < columns) {
-        productRow[i] *= values[i][j];
-        j++;
-      }
-      if ((productRow[i] >= min) && (productRow[i] <= max)) {
-        int randomNumber = rand.nextInt(columns);
-        values[i][randomNumber] -= 1;
-        productRow[i] = 1;
-      } else {
-        rowData[i] = productRow[i];
-        i++;
-      }
-      j = 0;
-    }
-    j = 0;
-    i = 0;
-    while (j < columns) {
-      while (i < rows) {
-        productCol[j] *= values[i][j];
-        i++;
-      }
-      if ((productCol[j] >= min) && (productCol[j] <= max)) {
-        int randomNumber = rand.nextInt(rows);
-        values[randomNumber][j] -= 1;
-        productCol[j] = 1;
-      } else {
-        colData[j] = productCol[j];
-        j++;
-      }
-      i = 0;
-    }
   }
 
   /**
