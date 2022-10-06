@@ -43,7 +43,6 @@ public class ArrayData {
    * type since this is a general constructor.
    */
   ArrayData(int nRows, int nColumns) {
-    /* checked */
     setRows(nRows);
     setColumns(nColumns);
     rowData = new int[rows];
@@ -65,7 +64,6 @@ public class ArrayData {
    * a general constructor.
    */
   ArrayData(int nRows, int nColumns, int startingValue) {
-    /* checked */
     setRows(nRows);
     setColumns(nColumns);
     rowData = new int[rows];
@@ -89,7 +87,6 @@ public class ArrayData {
    * field. There are no values that are returned.
    */
   public void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
-    /* checked */
     if (minRow <= 0) {
       System.out.println("The minimum row can not be less than 1");
     } else if (maxRow > rows) {
@@ -132,8 +129,6 @@ public class ArrayData {
    * position. There are no values that are returned.
    */
   public void flip(int num, int val) {
-    /* checked */
-    /* Kenez */
     Random rand = new Random(); // Creating an instance of Random to generate a
                                 // random number for the rows and columns
     int i = 0; // Counter variable to control the number of iterations
@@ -154,7 +149,6 @@ public class ArrayData {
    * passed in. There are no values that are returned.
    */
   public void sum() {
-    /* checked */
     initalizeArray(rowData);
     initalizeArray(colData);
     for (int i = 0; i < rows; ++i) {
@@ -184,9 +178,9 @@ public class ArrayData {
    * represents the number to search for. There are no values that are returned.
    */
   public void occurrence(int num) {
-    /* checked */
     initalizeArray(rowData);
     initalizeArray(colData);
+
     for (int i = 0; i < rows; ++i) {
       int rowOccurrences = 0;
       for (int j = 0; j < columns; ++j) {
@@ -212,15 +206,14 @@ public class ArrayData {
    * are to be passed in. There are no values that are returned.
    */
   public void standardDeviation() {
-    /* Dwayne */
     checkingForCol = 0;
     int[] calStandardDeviationRow = calStandardDeviation();
     for (int i = 0; i < rowData.length; i++) {
       rowData[i] = calStandardDeviationRow[i];
     }
-    
+
     checkingForCol = 1;
-    
+
     int[] calStandardDeviationCol = calStandardDeviation();
     for (int i = 0; i < colData.length; i++) {
       colData[i] = calStandardDeviationCol[i];
@@ -235,7 +228,6 @@ public class ArrayData {
    * of the sum of the odd positions divided by the sum of the even positions.
    */
   public double checkeredOdd() {
-    /* checked */
     int oddTotal = 0, evenTotal = 0; // Declaring and initalizing all the variables for a grid
                                      // location that is even or odd
     for (int i = 0; i < rows; i++) {
@@ -274,15 +266,15 @@ public class ArrayData {
    * returned.
    */
   public void product(int min, int max) {
-    /* Kenez */
-    /* checked */
     int productCol[], productRow[]; // Arrays to store the product of the columns and rows repesectively
     productCol = new int[columns]; // Declaring columns' product array.
     productRow = new int[rows]; // Declaring rows' product array.
     Random rand = new Random(); // Creating and instance of a random operator.
     int i = 0, j = 0; // Counter variables to traverse the grid.
+
     initalizeArrayWithStartingValue(productRow, 1);
     initalizeArrayWithStartingValue(productCol, 1);
+
     while (i < rows) {
       while (j < columns) {
         productRow[i] *= values[i][j];
@@ -324,7 +316,6 @@ public class ArrayData {
    * There are no values that are returned.
    */
   public void print() {
-    /* checked */
     System.out.println("");
     for (int i = 0; i < rows; ++i) {
       for (int j = 0; j < columns; ++j) {
@@ -358,8 +349,6 @@ public class ArrayData {
    * starting from the first columns. There are no values that are returned.
    */
   public void print(int rows, int columns) {
-    /* Dwanye */
-    /* checked */
     System.out.println("");
     int i = 0;
     while (i < rows) {
@@ -481,7 +470,6 @@ public class ArrayData {
    * in sumSqDeviation. Then the sumSqDeviation array is returned.
    */
   private double[] sumSqDeviationRow() {
-
     double[][] deviations = new double[rowData.length][colData.length]; // Declaring the deviations array and it is used
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
@@ -524,7 +512,6 @@ public class ArrayData {
    */
 
   private double[] sumSqDeviationCol() {
-
     double[][] deviations = new double[rowData.length][colData.length]; // Declaring the deviations array and it is used
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
@@ -574,6 +561,7 @@ public class ArrayData {
 
     initalizeArray(placeHolder);
     initalizeArray(standardDevia);
+
     if (checkingForCol == 0) {
       double[] sumSqDeviationRow = sumSqDeviationRow();
       for (int i = 0; i < rowData.length; i++) {
@@ -604,7 +592,6 @@ public class ArrayData {
    * the method is avgRow which is the average for the specific row index.
    */
   private double averageRow(int r) {
-    /* Dwanye */
     double sumRow = 0; // sumRow stores the sum of all of the numbers in the specific row in the values
                        // array
     double avgRow = 0; // avgRow stores the average for the specific row in the values array
@@ -632,7 +619,6 @@ public class ArrayData {
    * is avgCol which is the average for the specific column index.
    */
   private double averageCol(int c) {
-    /* Dwanye */
     double sumCol = 0; // sumCol stores the sum of all of the numbers in the specific column in the
                        // values array
     double avgCol = 0; // avgCol stores the average for the specific column in the values array
@@ -660,7 +646,6 @@ public class ArrayData {
    * non-negative integer. There are no values that are returned.
    */
   public void setRows(int nRows) {
-    /* checked */
     if (nRows >= 0) {
       rows = nRows;
     } else {
@@ -683,7 +668,6 @@ public class ArrayData {
    * which be non-negative integer. There are no values that are returned.
    */
   public void setColumns(int nColumns) {
-    /* checked */
     if (nColumns >= 0) {
       columns = nColumns;
     } else {
