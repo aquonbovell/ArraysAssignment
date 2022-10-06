@@ -5,7 +5,7 @@ import java.lang.Math;
  * The names of the programmers are:
  * Aquon Bovell, Kenez Horne and Dwayne Archer
  * The ArrayData class contains multiple methods and fields 
- * The basic functionality of the ArrayData class is to manipulate 
+ * The functionality of the ArrayData class is to manipulate 
  * the two dimensional values Array
  * Also calculations are performed on the values array and the results are stored 
  * in the rowData and colData arrays
@@ -463,11 +463,11 @@ public class ArrayData {
   }
 
   /**
-   * The sumSqDeviation() method, firstly, the method subtracts the average (using
+   * The sumSqDeviation() method, firstly, subtracts the average (using
    * the averageRow method) from each value in the values array and stores it in
    * the deviation array. Secondly, the deviations are squared and the result is
    * store in SqDeviations. Thirdly, the squared deviations are summed and stored
-   * in sumSqDeviation. Then the sumSqDeviation array is returned.
+   * in sumSqDeviations. Then the sumSqDeviations array is returned.
    */
   private double[] sumSqDeviationRow() {
     double[][] deviations = new double[rowData.length][colData.length]; // Declaring the deviations array and it is used
@@ -482,7 +482,7 @@ public class ArrayData {
     initalizeArray(sumSqDeviations);
 
     for (int row = 0; row < rowData.length; row++) {
-      double avgRow = averageRow(row);
+      double avgRow = averageRow(row); //The avgRow stores the average of each row in the values array
       for (int col = 0; col < colData.length; col++) {
         deviations[row][col] = values[row][col] - avgRow;
       }
@@ -507,8 +507,8 @@ public class ArrayData {
    * The sumSqDeviationCol() method, firstly, the method subtracts the average
    * (using the averageCol method) from each value in the values array and stores
    * it in the deviation array. Secondly, the deviations are squared and the
-   * result is store in SqDeviations. Thirdly, the squared deviations are summed
-   * and stored in sumSqDeviationCol. Then the sumSqDeviationCol array is returned
+   * results are store in SqDeviations array. Thirdly, the squared deviations are summed
+   * and stored in sumSqDeviation. Then the sumSqDeviation array is returned.
    */
 
   private double[] sumSqDeviationCol() {
@@ -524,7 +524,7 @@ public class ArrayData {
     initalizeArray(sumSqDeviations);
 
     for (int row = 0; row < rowData.length; row++) {
-      double avgCol = averageCol(row);
+      double avgCol = averageCol(row); //The avgCol stores the average of each column in the values array
       for (int col = 0; col < colData.length; col++) {
         deviations[col][row] = values[col][row] - avgCol;
       }
@@ -563,12 +563,14 @@ public class ArrayData {
     initalizeArray(standardDevia);
 
     if (checkingForCol == 0) {
-      double[] sumSqDeviationRow = sumSqDeviationRow();
+      double[] sumSqDeviationRow = sumSqDeviationRow(); //The sumSqDeviationRow field stores the values 
+                                                        //that are returned from the sumSqDeviationRow method
       for (int i = 0; i < rowData.length; i++) {
         placeHolder[i] = sumSqDeviationRow[i] / sampleSize;
       }
     } else if (checkingForCol == 1) {
-      double[] sumSqDeviationCol = sumSqDeviationCol();
+      double[] sumSqDeviationCol = sumSqDeviationCol(); //The sumSqDeviationCol field storees the values 
+                                                        //that are returned from the sumSqDeviationCol method
       for (int i = 0; i < rowData.length; i++) {
         placeHolder[i] = sumSqDeviationCol[i] / sampleSize;
       }
@@ -597,7 +599,7 @@ public class ArrayData {
     double avgRow = 0; // avgRow stores the average for the specific row in the values array
     double sample = 0; // sample is the sample size of the row which is ten
 
-    int row = 0;
+    int row = 0; //row is used as a counter field for the while loop
     while (row < rowData.length) {
       if (row == r) {
         for (int col = 0; col < colData.length; col++) {
@@ -624,7 +626,7 @@ public class ArrayData {
     double avgCol = 0; // avgCol stores the average for the specific column in the values array
     double sample = 0; // sample is the sample size of the column which is ten
 
-    int col = 0;
+    int col = 0; //col is used as a counter field for the while loop
     while (col < colData.length) {
       if (col == c) {
         for (int row = 0; row < rowData.length; row++) {
