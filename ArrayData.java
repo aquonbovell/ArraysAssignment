@@ -84,12 +84,12 @@ public class ArrayData {
    * 
    * @param rows the number of rows of the values array which must be non-negative
    */
-  public void setRows(int rows) {
+  public void setRows(int nRows) {
     /* checked */
-    if (rows >= 0) {
-      this.rows = rows;
+    if (nRows >= 0) {
+      rows = nRows;
     } else {
-      this.rows = 10;
+      rows = 10;
       System.out.println("rows must be positive");
     }
   }
@@ -109,12 +109,12 @@ public class ArrayData {
    * @param columns the number of columns of the values array which must be
    *                non-negative
    */
-  public void setColumns(int columns) {
+  public void setColumns(int nColumns) {
     /* checked */
-    if (columns >= 0) {
-      this.columns = columns;
+    if (nColumns >= 0) {
+      columns = nColumns;
     } else {
-      this.columns = 10;
+      columns = 10;
       System.out.println("columns must be positive");
     }
   }
@@ -144,19 +144,29 @@ public class ArrayData {
    */
   public void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
     /* checked */
-    int replaceableRange = (maxRow - minRow) * (maxCol - minCol);
-    if (replaceableRange >= total) {
-      for (int i = 0; i < total; ++i) {
-        int row = getRandomNumberInRange(maxRow, minRow);
-        int col = getRandomNumberInRange(maxCol, minCol);
-        while (values[row][col] == newValue) {
-          row = getRandomNumberInRange(maxRow, minRow);
-          col = getRandomNumberInRange(maxCol, minCol);
-        }
-        values[row][col] = newValue;
-      }
+    if (minRow <= 0) {
+      System.out.println("The minimum row can not be less than 1");
+    } else if (maxRow > rows) {
+      System.out.println("The maximum row must be less than or equal to the height of the array");
+    } else if (minCol <= 0) {
+      System.out.println("The minimum column can not be less 1");
+    } else if (maxCol > columns) {
+      System.out.println("The maximum column must be less than or equal to the width of the array");
     } else {
-      System.out.println("Total must be lower or equal to the replaceable range for the values array.");
+      int replaceableRange = ((maxRow - minRow)+1) * ((maxCol - minCol)+1);
+      if (replaceableRange >= total) {
+        for (int i = 0; i < total; ++i) {
+          int row = getRandomNumberInRange(maxRow, minRow);
+          int col = getRandomNumberInRange(maxCol, minCol);
+          while (values[row][col] == newValue) {
+            row = getRandomNumberInRange(maxRow, minRow);
+            col = getRandomNumberInRange(maxCol, minCol);
+          }
+          values[row][col] = newValue;
+        }
+      } else {
+        System.out.println("The specified value for Total must be less than or equal to the range that can be replaced");
+      }
     }
   }
 
@@ -253,7 +263,7 @@ public class ArrayData {
       rowData[i] = calStandardDeviation()[i];
     }
 
-    for (int i = 0; i < rowData.length; i++) {
+    for (int i = 0; i < colData.length; i++) {
       checkingForCol = 1;
       colData[i] = calStandardDeviation()[i];
     }
@@ -276,7 +286,7 @@ public class ArrayData {
         }
       }
       System.out.print(rowData[i]);
-      System.out.print("\n");
+      System.out.println("");
     }
     for (int i = 0; i < columns; ++i) {
       if (i == (columns - 1)) {
@@ -315,14 +325,13 @@ public class ArrayData {
       System.out.println();
       i++;
     }
-    System.out.println();
     int j = 0;
     while (j < columns) {
 
       System.out.print(colData[j] + " | ");
       j++;
     }
-    System.out.println();
+    System.out.println("");
   }
 
   /**
@@ -334,24 +343,24 @@ public class ArrayData {
   public void product(int min, int max) {
     /* Kenez */
     /* checked */
-    int prodCol[], prodRow[];// Arrays to store the product of the columns and rows repesectively
-    prodCol = new int[columns];// Declaring columns' product array.
-    prodRow = new int[rows];// Declaring rows' product array.
+    int productCol[], productRow[];// Arrays to store the product of the columns and rows repesectively
+    productCol = new int[columns];// Declaring columns' product array.
+    productRow = new int[rows];// Declaring rows' product array.
     Random rand = new Random();// Creating and instance of a random operator.
     int i = 0, j = 0;// Counter variables to traverse the grid.
-    initalizeArrayWithStartingValue(prodRow, 1);
-    initalizeArrayWithStartingValue(prodCol, 1);
+    initalizeArrayWithStartingValue(productRow, 1);
+    initalizeArrayWithStartingValue(productCol, 1);
     while (i < rows) {
       while (j < columns) {
-        prodRow[i] *= values[i][j];
+        productRow[i] *= values[i][j];
         j++;
       }
-      if ((prodRow[i] >= min) && (prodRow[i] <= max)) {
+      if ((productRow[i] >= min) && (productRow[i] <= max)) {
         int randomNumber = rand.nextInt(columns);
         values[i][randomNumber] -= 1;
-        prodRow[i] = 1;
+        productRow[i] = 1;
       } else {
-        rowData[i] = prodRow[i];
+        rowData[i] = productRow[i];
         i++;
       }
       j = 0;
@@ -360,15 +369,15 @@ public class ArrayData {
     i = 0;
     while (j < columns) {
       while (i < rows) {
-        prodCol[j] *= values[i][j];
+        productCol[j] *= values[i][j];
         i++;
       }
-      if ((prodCol[j] >= min) && (prodCol[j] <= max)) {
+      if ((productCol[j] >= min) && (productCol[j] <= max)) {
         int randomNumber = rand.nextInt(rows);
         values[randomNumber][j] -= 1;
-        prodCol[j] = 1;
+        productCol[j] = 1;
       } else {
-        colData[j] = prodCol[j];
+        colData[j] = productCol[j];
         j++;
       }
       i = 0;
@@ -493,7 +502,7 @@ public class ArrayData {
    */
   private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
-    return (rand.nextInt(max - min));
+    return (rand.nextInt((max - min + 1)) + min - 1);
   }
 
   /**
