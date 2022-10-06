@@ -90,7 +90,7 @@ public class ArrayData {
    * minRow which represents the minimum row to be used for selection and must be
    * at least 1, maxRow which represents the maximum row to be used for selection
    * and must not exceed the value of the row field, minCol which represents the
-   * minimum column to be used for selection and must be at least 1, maxCol which
+   * minimum column to be used for selection and must be at least 1 and maxCol which
    * represents the maximum column to be used for selection and must not exceed
    * the value of the column field.
    * There are no values that are returned.
@@ -309,6 +309,10 @@ public class ArrayData {
    * values array separated by two pipes ("||") and columns number of columns
    * in the values array and then finally columns number of elements in the
    * colData starting at the first column.
+   * The parameters are rows which represents the total number of rows to
+   * display starting from the first row and columns which represents the
+   * total number of columns to display starting from the first columns.
+   * There are no values that are returned.
    */
   public void print(int rows, int columns) {
     /* Dwanye */
@@ -344,6 +348,10 @@ public class ArrayData {
    * value of a random member in each row or column by 1 until the product of 
    * each row or column is less than the specified value of min and then stores the
    * result in rowData and colData respectively.
+   * The parameters are min which represents the minimum value to decide if to decrement
+   * a random value in the values array and max which represents the maximun value to decide if to decrement
+   * a random value in the values array.
+   * There are no values that are returned.
    */
   public void product(int min, int max) {
     /* Kenez */
@@ -438,10 +446,11 @@ public class ArrayData {
   }
 
   /**
-   * The initalizeArrayWithStartingValue(int array[], int startingValue) method
-   * initializes the elements of the one dimensional array to the starting value
-   * The two parameters are an integer one dimensional array and
-   * a starting value which is an integer
+   * Initializes all the elements of a one dimensional array of type int to the
+   * specified value of startingValue.
+   * The parameters are a one dimensional array of type int and startingValue 
+   * which represents the starting value of all entries in the array.
+   * There are no values that are returned.
    */
   private void initalizeArrayWithStartingValue(int array[], int startingValue) {
     for (int i = 0; i < array.length; ++i) {
@@ -450,10 +459,11 @@ public class ArrayData {
   }
 
   /**
-   * The initalizeArrayWithStartingValue(int array[][], int startingValue) method
-   * initializes the elements of the two dimensional array to the starting value
-   * The two parameters are an integer two dimensional array and
-   * a starting value which is an integer
+   * Initializes all the elements of a one dimensional array of type int to the
+   * specified value of startingValue.
+   * The parameters are a one dimensional array of type int and startingValue 
+   * which represents the starting value of all entries in the array.
+   * There are no values that are returned.
    */
   private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
     for (int i = 0; i < rows; ++i) {
@@ -464,12 +474,15 @@ public class ArrayData {
   }
 
   /**
-   * The getRandomNumberInRange(int max, int min) method
-   * basically gets a random number between the maximum and minimum numbers
-   * Then it returns that random number
-   * The two parameters for the method is a maximum number and a minimum number
+   * Returns a random integer between one least than the max and and one least than the min
+   * for the index of a n array.
+   * The two parameters for the method is a max which represents the maximum number for a 
+   * row or column in an array and min which represents the min number for a row row column
+   * in an array.
+   * The value returned is an integer between one least than the max and and one least than
+   * the min.
    */
-  private int getRandomNumberInRange(int max, int min) {
+  public int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
     return (rand.nextInt((max - min + 1)) + min - 1);
   }
@@ -489,8 +502,8 @@ public class ArrayData {
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
                                                                           // used to store the deivations squared
-    double[] sumSqDeviations = new double[rowData.length]; // Declaring the sumSqDeviations array and it is used to
-                                                           // store the summation of the squared deviations
+    double[] sumSqDeviations = new double[rowData.length];  // Declaring the sumSqDeviations array and it is used to
+                                                            // store the summation of the squared deviations
 
     initalizeArray(deviations);
     initalizeArray(sqDeviations);
@@ -533,8 +546,8 @@ public class ArrayData {
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
                                                                           // used to store the deivations squared
-    double[] sumSqDeviations = new double[rowData.length]; // Declaring the sumSqDeviations array and it is used to
-                                                           // store the summation of the squared deviations
+    double[] sumSqDeviations = new double[rowData.length];  // Declaring the sumSqDeviations array and it is used to
+                                                            // store the summation of the squared deviations
 
     initalizeArray(deviations);
     initalizeArray(sqDeviations);
