@@ -18,11 +18,10 @@ public class ArrayData {
 
   /**
    * Set fields rows and columns to their default value of 10 and construct
-   * rowData array
-   * to have lenght of rows, colData array to have lenght of columns and values
-   * array
-   * to have height of rows and lenght of columns with defalut entries of 0.
-   * There are no parameters and no return type since this is a constructor.
+   * rowData array to have lenght of rows, colData array to have lenght of
+   * columns and values array to have height of rows and lenght of columns
+   * with defalut entries of 0. There are no parameters and no return type
+   * since this is a constructor.
    */
   ArrayData() {
     setRows(10);
@@ -36,15 +35,12 @@ public class ArrayData {
   /**
    * Set the fields rows and columns to the specified value of nRows and nColumns
    * respectively and construct rowData array to have lenght of rows, colData
-   * array
-   * to have lenght of columns and values array to have height of rows and lenght
-   * of columns with with defalut entries of 0.
-   * The parameters are nRows which represents the number of rows of the values
-   * array
-   * which must be a non-negative integer and nColumns which represents the number
-   * of
-   * columns of the values array which must be a non-negative integer.
-   * There is no return type since this is a general constructor.
+   * array to have lenght of columns and values array to have height of rows and
+   * lenght of columns with with defalut entries of 0. The parameters are nRows
+   * which represents the number of rows of the values array which must be a
+   * non-negative integer and nColumns which represents the number of columns of
+   * the values array which must be a non-negative integer. There is no return
+   * type since this is a general constructor.
    */
   ArrayData(int nRows, int nColumns) {
     /* checked */
@@ -59,16 +55,14 @@ public class ArrayData {
   /**
    * Set the fields rows and columns to the specified value of nRows and nColumns
    * respectively and construct rowData array to have lenght of rows, colData
-   * array
-   * to have lenght of columns and values array to have height of rows and lenght
-   * of columns with defalut entries of the specified value of startingValue.
-   * The parameters are nRows which represents the number of rows of the values
-   * array
-   * which must be a non-negative integer, nColumns which represents the number of
-   * columns of the values array which must be a non-negative integer and
-   * startingValue which represents the starting value of all entries in the
-   * values array.
-   * There is no return type since this is a general constructor.
+   * array to have lenght of columns and values array to have height of rows and
+   * lenght of columns with defalut entries of the specified value of
+   * startingValue. The parameters are nRows which represents the number of rows
+   * of the values array which must be a non-negative integer, nColumns which
+   * represents the number of columns of the values array which must be a
+   * non-negative integer and startingValue which represents the starting value
+   * of all entries in the values array. There is no return type since this is
+   * a general constructor.
    */
   ArrayData(int nRows, int nColumns, int startingValue) {
     /* checked */
@@ -84,16 +78,15 @@ public class ArrayData {
    * Randomly selects a position within the intersection of the range of the rows
    * (maxRow - minRow) and the range of the columns (maxColumn - minColumn) in the
    * values array and assign the value of newValue to the selected position. This
-   * process is repeated total many times.
-   * The parameters are newValue which represents the new value to reassign,
-   * total which represents the number of times to randomly reassign a position.
-   * minRow which represents the minimum row to be used for selection and must be
-   * at least 1, maxRow which represents the maximum row to be used for selection
-   * and must not exceed the value of the row field, minCol which represents the
-   * minimum column to be used for selection and must be at least 1 and maxCol which
-   * represents the maximum column to be used for selection and must not exceed
-   * the value of the column field.
-   * There are no values that are returned.
+   * process is repeated total many times. The parameters are newValue which
+   * represents the new value to reassign, total which represents the number of
+   * times to randomly reassign a position, minRow which represents the minimum
+   * row to be used for selection and must be at least 1, maxRow which represents
+   * the maximum row to be used for selection and must not exceed the value of the
+   * row field, minCol which represents the minimum column to be used for
+   * selection and must be at least 1 and maxCol which represents the maximum
+   * column to be used for selection and must not exceed the value of the column
+   * field. There are no values that are returned.
    */
   public void generate(int newValue, int total, int minRow, int maxRow, int minCol, int maxCol) {
     /* checked */
@@ -133,11 +126,10 @@ public class ArrayData {
 
   /**
    * Randomly changes the values of a specified number of grid positions
-   * and change their value to a specified value of val.
-   * The parameters are num which represents the total num of replacements
-   * and val which represents the new value to assign to the randomly selected
-   * grid position.
-   * There are no values that are returned.
+   * and change their value to a specified value of val. The parameters
+   * are num which represents the total num of replacements and val which
+   * represents the new value to assign to the randomly selected grid
+   * position. There are no values that are returned.
    */
   public void flip(int num, int val) {
     /* checked */
@@ -156,11 +148,10 @@ public class ArrayData {
 
   /**
    * Sums each row in the values array and assign the value to rowData which
-   * corresponds to the index for the row in values array.
-   * Sum each column in the values array and assign the value to colData which
-   * corresponds to the index for the column in values array.
-   * No parameters are to be passed in.
-   * There are no values that are returned.
+   * corresponds to the index for the row in values array. Sums each column
+   * in the values array and assign the value to colData which corresponds
+   * to the index for the column in values array. No parameters are to be
+   * passed in. There are no values that are returned.
    */
   public void sum() {
     /* checked */
@@ -189,10 +180,8 @@ public class ArrayData {
    * the result in rowData at the corresponding index of each row. Also, counts
    * the number of times the value of num or a number that IS a multiple of num
    * appears in each column of the values array and stores the result in colData
-   * at the
-   * corresponding index of each column.
-   * The parameters are num which represents the number to search for.
-   * There are no values that are returned.
+   * at the corresponding index of each column. The parameters are num which
+   * represents the number to search for. There are no values that are returned.
    */
   public void occurrence(int num) {
     /* checked */
@@ -218,19 +207,23 @@ public class ArrayData {
 
   /**
    * The method below stores the calculation of the standard deviations
-   * in the rowData for each row.
-   * And stores the calculation of the standard deviations in the colData
-   * for each column.
+   * in the rowData for each row. And stores the calculation of the
+   * standard deviations in the colData for each column. No parameters
+   * are to be passed in. There are no values that are returned.
    */
   public void standardDeviation() {
     /* Dwayne */
+    checkingForCol = 0;
+    int[] calStandardDeviationRow = calStandardDeviation();
     for (int i = 0; i < rowData.length; i++) {
-      rowData[i] = calStandardDeviation()[i];
+      rowData[i] = calStandardDeviationRow[i];
     }
-
+    
+    checkingForCol = 1;
+    
+    int[] calStandardDeviationCol = calStandardDeviation();
     for (int i = 0; i < colData.length; i++) {
-      checkingForCol = 1;
-      colData[i] = calStandardDeviation()[i];
+      colData[i] = calStandardDeviationCol[i];
     }
   }
 
@@ -238,15 +231,13 @@ public class ArrayData {
    * Sums the values of the odd and even positions in the values array separately
    * then returns the result of dividing the sum of the odd positions by the sum
    * of the even positions only if the sum of the even positons is not zero.
-   * There are no parameters to be passed in.
-   * The value returned is the quotient of the sum of the odd positions divided
-   * by the sum of the even positions.
+   * There are no parameters to be passed in. The value returned is the quotient
+   * of the sum of the odd positions divided by the sum of the even positions.
    */
   public double checkeredOdd() {
     /* checked */
-    
-    int oddTotal = 0, evenTotal = 0;  // Declaring and initalizing all the variables for a grid
-                                      // location that is even or odd
+    int oddTotal = 0, evenTotal = 0; // Declaring and initalizing all the variables for a grid
+                                     // location that is even or odd
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
         if (i % 2 == 0) {
@@ -274,22 +265,22 @@ public class ArrayData {
 
   /**
    * Calculates the product of each row and column separately and decrements the
-   * value of a random member in each row or column by 1 until the product of 
-   * each row or column is less than the specified value of min and then stores the
-   * result in rowData and colData respectively.
-   * The parameters are min which represents the minimum value to decide if to decrement
-   * a random value in the values array and max which represents the maximun value to decide if to decrement
-   * a random value in the values array.
-   * There are no values that are returned.
+   * value of a random member in each row or column by 1 until the product of
+   * each row or column is less than the specified value of min and then stores
+   * the result in rowData and colData respectively. The parameters are min which
+   * represents the minimum value to decide if to decrement a random value in the
+   * values array and max which represents the maximun value to decide if to
+   * decrement a random value in the values array. There are no values that are
+   * returned.
    */
   public void product(int min, int max) {
     /* Kenez */
     /* checked */
     int productCol[], productRow[]; // Arrays to store the product of the columns and rows repesectively
-    productCol = new int[columns];  // Declaring columns' product array.
-    productRow = new int[rows];     // Declaring rows' product array.
-    Random rand = new Random();     // Creating and instance of a random operator.
-    int i = 0, j = 0;               // Counter variables to traverse the grid.
+    productCol = new int[columns]; // Declaring columns' product array.
+    productRow = new int[rows]; // Declaring rows' product array.
+    Random rand = new Random(); // Creating and instance of a random operator.
+    int i = 0, j = 0; // Counter variables to traverse the grid.
     initalizeArrayWithStartingValue(productRow, 1);
     initalizeArrayWithStartingValue(productCol, 1);
     while (i < rows) {
@@ -329,8 +320,7 @@ public class ArrayData {
   /**
    * Displays all the elements in the ith row along with the ith element in
    * rowData separated by two pipes ("||") and finally all the elements in
-   * the colData on a separate line.
-   * There are no parameters to be passed in.
+   * the colData on a separate line. There are no parameters to be passed in.
    * There are no values that are returned.
    */
   public void print() {
@@ -362,11 +352,10 @@ public class ArrayData {
    * along with the element in rowData that corresponds to the row in the
    * values array separated by two pipes ("||") and columns number of columns
    * in the values array and then finally columns number of elements in the
-   * colData starting at the first column.
-   * The parameters are rows which represents the total number of rows to
-   * display starting from the first row and columns which represents the
-   * total number of columns to display starting from the first columns.
-   * There are no values that are returned.
+   * colData starting at the first column. The parameters are rows which
+   * represents the total number of rows to display starting from the first
+   * row and columns which represents the total number of columns to display
+   * starting from the first columns. There are no values that are returned.
    */
   public void print(int rows, int columns) {
     /* Dwanye */
@@ -398,9 +387,9 @@ public class ArrayData {
   }
 
   /**
-   * Initializes all the elements of a two dimensional array of type double to zero
-   * The parameter is a two dimensional array of type double.
-   * There are no values that are returned.
+   * Initializes all the elements of a two dimensional array of type double to
+   * zero. The parameter is a two dimensional array of type double. There are no
+   * values that are returned.
    */
   private void initalizeArray(double array[][]) {
     for (int i = 0; i < rows; ++i) {
@@ -412,8 +401,8 @@ public class ArrayData {
 
   /**
    * Initializes all the elements of a two dimensional array of type int to zero
-   * The parameter is a two dimensional array of type int.
-   * There are no values that are returned.
+   * The parameter is a two dimensional array of type int. There are no values
+   * that are returned.
    */
   private void initalizeArray(int array[][]) {
     for (int i = 0; i < rows; ++i) {
@@ -424,9 +413,9 @@ public class ArrayData {
   }
 
   /**
-   * Initializes all the elements of a one dimensional array of type double to zero
-   * The parameter is a one dimensional array of type double.
-   * There are no values that are returned.
+   * Initializes all the elements of a one dimensional array of type double to
+   * zero. The parameter is a one dimensional array of type double. There are no
+   * values that are returned.
    */
   private void initalizeArray(double array[]) {
     for (int i = 0; i < array.length; ++i) {
@@ -436,8 +425,8 @@ public class ArrayData {
 
   /**
    * Initializes all the elements of a one dimensional array of type int to zero
-   * The parameter is a one dimensional array of type int.
-   * There are no values that are returned.
+   * The parameter is a one dimensional array of type int. There are no values
+   * that are returned.
    */
   private void initalizeArray(int array[]) {
     for (int i = 0; i < array.length; ++i) {
@@ -447,10 +436,9 @@ public class ArrayData {
 
   /**
    * Initializes all the elements of a one dimensional array of type int to the
-   * specified value of startingValue.
-   * The parameters are a one dimensional array of type int and startingValue 
-   * which represents the starting value of all entries in the array.
-   * There are no values that are returned.
+   * specified value of startingValue. The parameters are a one dimensional array
+   * of type int and startingValue which represents the starting value of all
+   * entries in the array. There are no values that are returned.
    */
   private void initalizeArrayWithStartingValue(int array[], int startingValue) {
     for (int i = 0; i < array.length; ++i) {
@@ -460,10 +448,9 @@ public class ArrayData {
 
   /**
    * Initializes all the elements of a one dimensional array of type int to the
-   * specified value of startingValue.
-   * The parameters are a one dimensional array of type int and startingValue 
-   * which represents the starting value of all entries in the array.
-   * There are no values that are returned.
+   * specified value of startingValue. The parameters are a one dimensional array
+   * of type int and startingValue which represents the starting value of all
+   * entries in the array. There are no values that are returned.
    */
   private void initalizeArrayWithStartingValue(int array[][], int startingValue) {
     for (int i = 0; i < rows; ++i) {
@@ -474,13 +461,12 @@ public class ArrayData {
   }
 
   /**
-   * Returns a random integer between one least than the max and and one least than the min
-   * for the index of a n array.
-   * The two parameters for the method is a max which represents the maximum number for a 
-   * row or column in an array and min which represents the min number for a row row column
-   * in an array.
-   * The value returned is an integer between one least than the max and and one least than
-   * the min.
+   * Returns a random integer between one least than the max and and one least
+   * than the min for the index of a n array. The two parameters for the method is
+   * a max which represents the maximum number for a row or column in an array and
+   * min which represents the min number for a row or a column in an array. The
+   * value returned is an integer between one least than the max and and one least
+   * than the min.
    */
   private int getRandomNumberInRange(int max, int min) {
     Random rand = new Random();
@@ -488,30 +474,29 @@ public class ArrayData {
   }
 
   /**
-   * The sumSqDeviation() method,
-   * firstly, the method subtracts the average (using the averageRow method) from
-   * each value in the
-   * values array and stores it in the deviation array.
-   * Secondly, the deviations are squared and the result is store in SqDeviations.
-   * Thirdly, the squared deviations are summed and stored in sumSqDeviation.
-   * Then the sumSqDeviation array is returned
+   * The sumSqDeviation() method, firstly, the method subtracts the average (using
+   * the averageRow method) from each value in the values array and stores it in
+   * the deviation array. Secondly, the deviations are squared and the result is
+   * store in SqDeviations. Thirdly, the squared deviations are summed and stored
+   * in sumSqDeviation. Then the sumSqDeviation array is returned.
    */
-  private double[] sumSqDeviation() {
+  private double[] sumSqDeviationRow() {
 
     double[][] deviations = new double[rowData.length][colData.length]; // Declaring the deviations array and it is used
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
                                                                           // used to store the deivations squared
-    double[] sumSqDeviations = new double[rowData.length];  // Declaring the sumSqDeviations array and it is used to
-                                                            // store the summation of the squared deviations
+    double[] sumSqDeviations = new double[rowData.length]; // Declaring the sumSqDeviations array and it is used to
+                                                           // store the summation of the squared deviations
 
     initalizeArray(deviations);
     initalizeArray(sqDeviations);
     initalizeArray(sumSqDeviations);
 
     for (int row = 0; row < rowData.length; row++) {
+      double avgRow = averageRow(row);
       for (int col = 0; col < colData.length; col++) {
-        deviations[row][col] = values[row][col] - averageRow(row);
+        deviations[row][col] = values[row][col] - avgRow;
       }
     }
 
@@ -531,13 +516,11 @@ public class ArrayData {
   }
 
   /**
-   * The sumSqDeviationCol() method,
-   * firstly, the method subtracts the average (using the averageCol method) from
-   * each value in the
-   * values array and stores it in the deviation array.
-   * Secondly, the deviations are squared and the result is store in SqDeviations.
-   * Thirdly, the squared deviations are summed and stored in sumSqDeviationCol.
-   * Then the sumSqDeviationCol array is returned
+   * The sumSqDeviationCol() method, firstly, the method subtracts the average
+   * (using the averageCol method) from each value in the values array and stores
+   * it in the deviation array. Secondly, the deviations are squared and the
+   * result is store in SqDeviations. Thirdly, the squared deviations are summed
+   * and stored in sumSqDeviationCol. Then the sumSqDeviationCol array is returned
    */
 
   private double[] sumSqDeviationCol() {
@@ -546,16 +529,17 @@ public class ArrayData {
                                                                         // to store the deviation values
     double[][] sqDeviations = new double[rowData.length][colData.length]; // Declaring the sqDeviations array and it is
                                                                           // used to store the deivations squared
-    double[] sumSqDeviations = new double[rowData.length];  // Declaring the sumSqDeviations array and it is used to
-                                                            // store the summation of the squared deviations
+    double[] sumSqDeviations = new double[rowData.length]; // Declaring the sumSqDeviations array and it is used to
+                                                           // store the summation of the squared deviations
 
     initalizeArray(deviations);
     initalizeArray(sqDeviations);
     initalizeArray(sumSqDeviations);
 
     for (int row = 0; row < rowData.length; row++) {
+      double avgCol = averageCol(row);
       for (int col = 0; col < colData.length; col++) {
-        deviations[col][row] = values[col][row] - averageCol(row);
+        deviations[col][row] = values[col][row] - avgCol;
       }
     }
 
@@ -574,12 +558,10 @@ public class ArrayData {
   }
 
   /**
-   * The calStandardDeviation() method
-   * Checks to see which sumSqDeviation to use using the checkingForCol field
-   * A placeHolder stores the variance as a double
-   * Then the placeHolder is rooted using the Math.sqrt() method
-   * Afterwards the placeHolder is converted into a integer and stored in the
-   * field standardDevia
+   * The calStandardDeviation() method checks to see which sumSqDeviation to use
+   * using the checkingForCol field, a placeHolder stores the variance as a double
+   * Then the placeHolder is rooted using the Math.sqrt() method. Afterwards the
+   * placeHolder is converted into a integer and stored in the field standardDevia
    * Then the standardDevia is returned which is the final value of the standard
    * deviation
    */
@@ -592,14 +574,15 @@ public class ArrayData {
 
     initalizeArray(placeHolder);
     initalizeArray(standardDevia);
-
     if (checkingForCol == 0) {
+      double[] sumSqDeviationRow = sumSqDeviationRow();
       for (int i = 0; i < rowData.length; i++) {
-        placeHolder[i] = sumSqDeviation()[i] / sampleSize;
+        placeHolder[i] = sumSqDeviationRow[i] / sampleSize;
       }
     } else if (checkingForCol == 1) {
+      double[] sumSqDeviationCol = sumSqDeviationCol();
       for (int i = 0; i < rowData.length; i++) {
-        placeHolder[i] = sumSqDeviationCol()[i] / sampleSize;
+        placeHolder[i] = sumSqDeviationCol[i] / sampleSize;
       }
     }
 
@@ -615,12 +598,10 @@ public class ArrayData {
   }
 
   /**
-   * The purpose of the averageRow(int r) method
-   * is to find the avergage of each row in the values array
-   * for the standard deviation
-   * r is the parameter of the method and r is the row index for the values array
-   * The value returned from the method is avgRow which is the average for the
-   * specific row index
+   * The purpose of the averageRow(int r) method is to find the avergage of each
+   * row in the values array for the standard deviation r is the parameter of the
+   * method and r is the row index for the values array. The value returned from
+   * the method is avgRow which is the average for the specific row index.
    */
   private double averageRow(int r) {
     /* Dwanye */
@@ -645,13 +626,10 @@ public class ArrayData {
   }
 
   /**
-   * The purpose of the averageCol(int c) method
-   * is to find the average of each column in the values array
-   * for the standard deviation
-   * c is the parameter of the method and c is the column index for the values
-   * array
-   * The value returned is avgCol which is the average for the specific column
-   * index
+   * The purpose of the averageCol(int c) method is to find the average of each
+   * column in the values array for the standard deviation c is the parameter of
+   * the method and c is the column index for the values array. The value returned
+   * is avgCol which is the average for the specific column index.
    */
   private double averageCol(int c) {
     /* Dwanye */
@@ -660,15 +638,15 @@ public class ArrayData {
     double avgCol = 0; // avgCol stores the average for the specific column in the values array
     double sample = 0; // sample is the sample size of the column which is ten
 
-    int row = 0;
-    while (row < rowData.length) {
-      if (row == c) {
-        for (int col = 0; col < colData.length; col++) {
-          sumCol += values[col][row];
+    int col = 0;
+    while (col < colData.length) {
+      if (col == c) {
+        for (int row = 0; row < rowData.length; row++) {
+          sumCol += values[row][col];
         }
         break;
       }
-      row++;
+      col++;
     }
     sample = colData.length;
     avgCol = sumCol / sample;
@@ -676,11 +654,10 @@ public class ArrayData {
   }
 
   /**
-   * Set the field rows to the specified value of nRows if the value of
-   * nRows is non-negative, otherwise it will default to the value of 10.
-   * The parameter is nRows which represents the number of
-   * rows of the values array which be non-negative integer.
-   * There are no values that are returned.
+   * Set the field rows to the specified value of nRows if the value of nRows is
+   * non-negative, otherwise it will default to the value of 10. The parameter is
+   * nRows which represents the number of rows of the values array which be
+   * non-negative integer. There are no values that are returned.
    */
   public void setRows(int nRows) {
     /* checked */
@@ -693,8 +670,7 @@ public class ArrayData {
   }
 
   /**
-   * No parameters are to be passed in.
-   * Returns the value of the rows field
+   * No parameters are to be passed in. Returns the value of the rows field
    */
   public int getRows() {
     return rows;
@@ -702,10 +678,9 @@ public class ArrayData {
 
   /**
    * Set the field columns to the specified value of nColumns if the value of
-   * nColumns is non-negative, otherwise it will default to the value of 10.
-   * The parameter is nColumns which represents the number of
-   * rows of the values array which be non-negative integer.
-   * There are no values that are returned.
+   * nColumns is non-negative, otherwise it will default to the value of 10. The
+   * parameter is nColumns which represents the number of rows of the values array
+   * which be non-negative integer. There are no values that are returned.
    */
   public void setColumns(int nColumns) {
     /* checked */
@@ -718,8 +693,7 @@ public class ArrayData {
   }
 
   /**
-   * No parameters are to be passed in.
-   * Returns the value of columns field
+   * No parameters are to be passed in. Returns the value of columns field
    */
   public int getColumns() {
     return columns;
